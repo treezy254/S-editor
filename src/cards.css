@@ -1,0 +1,101 @@
+body {
+	background-color: hsl(138, 24%, 89%);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* navbar */
+
+.navbar {
+	position: static;
+}
+
+.logo {
+	font-size: 24px;
+	padding-top: 10px;
+	margin-left: 30px;
+}
+
+.nav-ul {
+	margin-left: 80%;
+	margin-top: -20px;
+	display: flex;
+}
+
+/* end of navbar */
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.course--area {
+	width: 1000px;
+	height: 700px;
+	background-color: hsl(138, 24%, 89%);
+	display: block;
+}
+
+.course--card--course {
+	display: flex;
+	margin-top: 40px;
+	margin-left: 40px;
+	width: 560px;
+	padding: 5px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 4px;
+}
+
+.course--banner--js {
+	width: 280px;
+	height: 130px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 90px;
+/*	margin: auto;*/
+	background-color: #f1d05b;
+/*	background-image: url('/home/arch/Desktop/build/src/resources/images/js.png');*/
+	color: hsl(250.9, 16.4%, 39.4%);
+}
+
+.course--description {
+	width: 260px;
+	height: 130px;
+	margin-left: 10px;
+	font-size: 14px;
+}
+
+
+
+.course--lower {
+	margin-top: 80px;
+}
+
+.course--banner--react {
+	width: 280px;
+	height: 130px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 90px;
+/*	margin: auto;*/
+	background-color: hsla(220,92.86%,79.39%,1);
+/*	background-image: url('/home/arch/Desktop/build/src/resources/images/react.png');*/
+	color: hsl(250.9, 16.4%, 39.4%);
+}
+
+
+.course--banner--html {
+	width: 280px;
+	height: 130px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 90px;
+/*	margin: auto;*/
+	background-color: #f1d05b;
+	color: hsl(250.9, 16.4%, 39.4%);
+/*	background-image: url('/home/arch/Desktop/build/src/resources/images/html.png');*/
+}

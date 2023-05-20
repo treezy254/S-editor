@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Editor</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./prism/prism.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+<body>
+	<div id="container">
+		<div id="fileList">
+            <h2 style="font-weight: 600; text-transform: uppercase; font-size: 12px; border: 1px solid #fff; border-radius: 5px; height: 20px; width: 40px; text-align: center; padding-top: 2px;"><a style="text-decoration: none; color: inherit;" href="../home.html">Home</a></h2>
+            <h2 style="font-weight: 600; text-transform: uppercase; font-size: 12px;">Explorer</h2>
+            <ul id="files"></ul>
+            <button id="newFileButton">New File</button>
+            <button id="record" style="position: absolute; bottom: 0; left: 0; margin-left: 10px; margin-bottom: 40px;">record</button>
+			<button id="save" style="position: absolute; bottom: 0; left: 0; margin-left: 10px; margin-bottom: 10px;">save</button>
+        </div>
+	
+		<div id="editor">
+			<div class="lineNumbers"></div>
+			<textarea 
+				class="code" 
+				placeholder="Enter Code..." 
+				id="editing" 
+				spellcheck="false" 
+				oninput="update(this.value); 
+				sync_scroll(this);" 
+				onscroll="sync_scroll(this);" 
+				onkeydown="check_tab(this, event);"></textarea>
+
+			<pre id="highlighting" aria-hidden="true">
+				<code class="language-py" id="highlighting-content"></code>
+			</pre>
+
+			<div class="button--container">
+	            <button id="runButton">Run</button>
+	            <button id="consoleButton">Console</button>
+	        </div>
+			<div id="consoleArea" style="display: none;">
+		        <div id="console--header">
+		            <h2>Console</h2>
+		        </div>
+		        <pre id="consoleOutput"></pre>
+		    </div>
+		</div>
+	</div>
+
+	<script src="./skulpt/skulpt.min.js"></script>
+    <script src="./skulpt/skulpt-stdlib.js"></script>
+
+	<script type="text/javascript" src="./prism/prism.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+	<script type="module" src="src/index.js"></script>
+	<script>
+		// File list
+        const filesElement = document.getElementById('files');
+        // Get the console button and console area elements
+        const consoleButton = document.getElementById('consoleButton');
+        const consoleArea = document.getElementById('consoleArea');
+        const outputElement = document.getElementById('consoleOutput');
+        let fileList = [];
+
+        // Add a click event listener to the console button
+        consoleButton.addEventListener('click', () => {
+            consoleArea.style.display = consoleArea.style.display === 'none' ? 'block' : 'none';
+        });
+
+
+        function addFile(fileName) {
+            fileList.push(fileName);
+            const li = document.createElement('li');
+            li.textContent = fileName;
+            li.addEventListener('click', () => {
+                loadFile(fileName);
+            });
+            filesElement.appendChild(li);
+        }
+
+        function createNewFile() {
+            const fileName = prompt('Enter the name of the new file:');
+            if (fileName) {
+                addFile(fileName);
+                loadFile(fileName);
+            }
+        }
+
+        // Create new file button
+        const newFileButton = document.getElementById('newFileButton');
+        newFileButton.addEventListener('click', createNewFile);
+
+        // Code editor
+        const codeEditor = document.getElementById('editing');
+        const lineNumbers = document.querySelector('.lineNumbers');
+
+        function updateLineNumbers() {
+            const lines = codeEditor.value.split('\n').length;
+            lineNumbers.innerHTML = Array.from({ length: lines }).map((_, i) => i + 1).join('<br>');
+        }
+
+        codeEditor.addEventListener('input', () => {
+            updateLineNumbers();
+            saveFile();
+        });
+
+        // Output
+        // const outputElement = document.getElementById('output');
+
+        // Run button
+        const runButton = document.getElementById('runButton');
+        runButton.addEventListener('click', executeCode);
+
+        function executeCode() {
+            // outputElement.textContent = ''; // Clear previous output
+
+            // Clear previous output
+            outputElement.textContent = '';
+            consoleArea.style.display = 'none';
+            consoleOutput.textContent = '';
+
+            const code = codeEditor.value;
+
+            // Configure Skulpt
+            Sk.configure({
+                output: function (text) {
+                    consoleArea.style.display = 'block';
+                    consoleOutput.textContent += text + '\n';
+                },
+
+                read: function (file) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][file] === undefined)
+                        throw "File not found: '" + file + "'";
+                    return Sk.builtinFiles['files'][file];
+                }
+            });
+
+            // Execute Python code using Skulpt
+            try {
+                Sk.misceval.asyncToPromise(function () {
+                    return Sk.importMainWithBody("<stdin>", false, code, true);
+                });
+            } catch (e) {
+                outputElement.textContent += e.toString() + '\n';
+            }
+        }
+
+        // File caching
+        function saveFile() {
+            const fileName = getCurrentFile();
+            localStorage.setItem(`file-${fileName}`, codeEditor.value);
+        }
+
+        function loadFile(fileName) {
+            const fileContent = localStorage.getItem(`file-${fileName}`);
+            codeEditor.value = fileContent || '';
+            updateLineNumbers();
+        }
+
+        function getCurrentFile() {
+            const activeFile = document.querySelector('#files li.active');
+            return activeFile ? activeFile.textContent : null;
+        }
+
+        function highlightActiveFile() {
+            const files = document.querySelectorAll('#files li');
+            files.forEach(file => {
+                file.classList.remove('active');
+                if (file.textContent === getCurrentFile()) {
+                    file.classList.add('active');
+                }
+            });
+        }
+
+        function renameFile(fileName) {
+            const newFileName = prompt('Enter the new name for the file:', fileName);
+            if (newFileName) {
+                const index = fileList.indexOf(fileName);
+                if (index !== -1) {
+                    fileList[index] = newFileName;
+                    const fileElement = document.querySelector(`#files li:nth-child(${index + 1})`);
+                    if (fileElement) {
+                        fileElement.textContent = newFileName;
+                    }
+                    localStorage.removeItem(`file-${fileName}`);
+                    localStorage.setItem(`file-${newFileName}`, codeEditor.value);
+                }
+            }
+        }
+
+        filesElement.addEventListener('contextmenu', event => {
+            event.preventDefault();
+            const fileName = getCurrentFile();
+            if (fileName) {
+                renameFile(fileName);
+            }
+        });
+
+        filesElement.addEventListener('click', event => {
+            if (event.target.nodeName === 'LI') {
+                const fileName = event.target.textContent;
+                loadFile(fileName);
+                highlightActiveFile();
+            }
+        });
+
+        // Load initial files from local storage
+        function loadFilesFromStorage() {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('file-')) {
+                    const fileName = key.substring(5);
+                    fileList.push(fileName);
+                    addFile(fileName);
+                }
+            }
+        }
+
+        loadFilesFromStorage();
+
+        // Add sample files
+        if (fileList.length === 0) {
+            addFile('__init__.py');
+        }
+
+        // Load initial file
+        const initialFileName = fileList[0];
+        if (initialFileName) {
+            loadFile(initialFileName);
+        }
+
+        highlightActiveFile();
+	</script>
+
+</body>
+</html>

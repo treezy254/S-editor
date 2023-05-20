@@ -1,0 +1,297 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    background-color: #212329;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+#editor textarea::-webkit-scrollbar-thumb {
+    background-color: #ffe796;
+}
+
+#editor textarea::selection {
+    background-color: #ffe796;
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+#fileList {
+    width: 200px;
+    background-color: #2B2D34;
+    padding: 10px;
+    color: #64748b;
+/*    margin-right: 10px;*/
+}
+
+li {
+    list-style-type: none;
+}
+
+#fileList li {
+    cursor: pointer;
+}
+
+#files li.active {
+    background-color: #f1d05b;
+}
+
+#editor {
+    flex-grow: 1;
+    position: relative;
+    padding-left: 50px;
+    margin-right: 10px;
+}
+
+.lineNumbers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    padding: 10px;
+    background-color: #212329;
+    border-right: 1px solid #212329;
+    width: 30px;
+    font-family: "Source Code Pro";
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    height: 100%;
+    color: #bbbbbb;
+    margin-top: 10px;
+
+    z-index: 1;
+}
+
+
+#editing, #highlighting {
+	/* Both elements need the same text and space styling so they are directly on top of each other */
+	margin: 10px;
+	margin-left: 30px;
+	padding: 10px;
+	border: none;
+	outline: none;
+	resize: none;
+	width: 100%;
+	height: 100%;
+	background-color: #212329;
+	font-family: 'Source Code Pro', monospace;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0px;
+}
+
+#highlighting {
+  position: absolute;
+  top: 0;
+  left: 30px; /* Increased left offset to make space for line numbers */
+  width: calc(100% - 30px); /* Adjusted width to accommodate line numbers */
+  height: 100%;
+  border: none;
+  resize: none;
+  padding: 10px;
+  outline: none;
+  background-color: #212329;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+#editing, #highlighting, #highlighting * {
+	/* Also add text styles to highlighing tokens */
+	font-size: 14px;
+	font-family: 'Source Code Pro', monospace;
+	line-height: 20px;
+	tab-size: 4;
+}
+
+
+#editing, #highlighting {
+  /* In the same place */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+/* Move the textarea in front of the result */
+
+#editing {
+  z-index: 1;
+}
+#highlighting {
+  z-index: 0;
+}
+
+
+/* Make textarea almost completely transparent */
+
+#editing {
+  color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  caret-color: white; /* Or choose your favourite color */
+}
+
+/* Can be scrolled */
+#editing, #highlighting {
+  overflow: auto;
+  white-space: nowrap; /* Allows textarea to scroll horizontally */
+}
+
+/* No resize on textarea */
+#editing {
+  resize: none;
+}
+
+/* Paragraphs; First Image */
+p code {
+  background-color: #212329;
+  color: yellow;
+}
+
+#runButton {
+    position: absolute;
+    background: hsla(142.13,76.22%,36.27%,100%);
+    border: 1px solid hsla(100,100%,100%,0%);
+    color: #fff;
+    top: 10px;
+    right: 100px;
+    border: none;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    user-select: none;
+
+    z-index: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#consoleButton {
+    position: absolute;
+    background: hsla(215.29,25%,26.67%,10%);
+    border-color: #334155;
+    color: #64748b;
+    top: 10px;
+    right: 10px;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    background: hsla(215.29,25%,26.67%,100%);
+    margin-left: 0.5rem;
+    border: 1px solid hsla(100,100%,100%,0%);
+    user-select: none;
+    z-index: 1;
+}
+
+#consoleArea {
+    border-top: 1px solid #c3c3c3;
+    width: 100%;
+
+    background-color: #212329;
+
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+#console--header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 500;
+    padding: 0px 0.5em;
+    color: #6d7a81;
+    height: 30px;
+    font-size: 13px;
+}
+
+#consoleOutput {
+	color: #ffffff;
+}
+
+
+.graphline {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 10px;
+
+    /*transition: opacity .5s linear,color .5s linear;
+    color: hsla(213.12,93.9%,67.84%,100%);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 2px;
+    background: currentColor;
+    width: 100px;
+    transform: 577 / 100 * 1;
+    transform-origin: 0% 50%;
+
+    border: 1px solid red;*/
+}
+
+
+/*#seek-bar::-webkit-slider-runnable-track {
+    background-color: hsla(213.12,93.9%,67.84%,100%);
+}
+
+#seek-bar::-webkit-slider-thumb {
+    width: 10px; 
+    height: 10px; mb 
+    background-color: #red; 
+    border-radius: 50%;     
+    -webkit-appearance: none;
+    appearance: none;
+
+    margin-bottom: 4px;
+
+}*/

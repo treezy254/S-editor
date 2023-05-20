@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Savana</title>
+	<link rel="stylesheet" type="text/css" href="/home.20aa8ec5.css">
+	<link rel="stylesheet" type="text/css" href="/home.905cd344.css">
+
+	 <script>// JavaScript to handle content switching
+document.addEventListener("DOMContentLoaded", function() {
+    var dashboarder = document.querySelector(".dashboard-section");
+    var coursers = document.querySelector(".courses-section");
+    var scrimers = document.querySelector(".scrims-section");
+    var playlisters = document.querySelector(".playlists-section");
+    var dashboardButton = document.getElementById("dashboard-button");
+    var coursesButton = document.getElementById("courses-button");
+    var scrimsButton = document.getElementById("scrims-button");
+    var playlistsButton = document.getElementById("playlists-button");
+    function dash() {
+        dashboarder.classList.remove("hidden");
+        coursers.classList.add("hidden");
+        scrimers.classList.add("hidden");
+        playlisters.classList.add("hidden");
+        dashboardButton.classList.add("active");
+        coursesButton.classList.remove("active");
+        scrimsButton.classList.remove("active");
+        playlistsButton.classList.remove("active");
+        console.log("dashboard");
+    }
+    function courses() {
+        dashboarder.classList.add("hidden");
+        coursers.classList.remove("hidden");
+        scrimers.classList.add("hidden");
+        playlisters.classList.add("hidden");
+        dashboardButton.classList.remove("active");
+        coursesButton.classList.add("active");
+        scrimsButton.classList.remove("active");
+        playlistsButton.classList.remove("active");
+        console.log("courses");
+    }
+    function scrims() {
+        dashboarder.classList.add("hidden");
+        coursers.classList.add("hidden");
+        scrimers.classList.remove("hidden");
+        playlisters.classList.add("hidden");
+        dashboardButton.classList.remove("active");
+        coursesButton.classList.remove("active");
+        scrimsButton.classList.add("active");
+        playlistsButton.classList.remove("active");
+        console.log("scrims");
+    }
+    function playlists() {
+        dashboarder.classList.add("hidden");
+        coursers.classList.add("hidden");
+        scrimers.classList.add("hidden");
+        playlisters.classList.remove("hidden");
+        dashboardButton.classList.remove("active");
+        coursesButton.classList.remove("active");
+        scrimsButton.classList.remove("active");
+        playlistsButton.classList.add("active");
+        console.log("playlists");
+    }
+    dash();
+    dashboardButton.addEventListener("click", dash);
+    coursesButton.addEventListener("click", courses);
+    scrimsButton.addEventListener("click", scrims);
+    playlistsButton.addEventListener("click", playlists);
+});
+
+</script>
+
+
+</head>
+
+<body>
+
+	<navbar class="navbar">
+		<div class="logo">
+			<a href="/home.html" id="logo">savana</a>
+		</div>
+		<div class="nav-ul">
+			<button style="width: 100px; height: 40px; color: #fff; background-color: #5035ff; border-color: #5035ff; border-radius: 15px; font-weight: bold"><a href="/pricing.html">Go Pro!</a></button>
+			<span style="margin-top: 10px; margin-left: 15px; font-size: 18px"><a href="/course">Courses</a></span>
+			<div style="width: 40px; height: 40px; background-color: red; margin-left: 20px"><a href="/landing.html"><img src="/nice.5ced5bd9.jpg" style="width: 100%; height: 100%"></a></div>
+		</div>
+	</navbar> 
+
+	
+	<div class="sidebar">
+	    <button id="dashboard-button" class="dash">Dashboard</button>
+	    <button id="courses-button" class="cours">My Courses</button>
+	    <button id="scrims-button" class="scrim">My Scrims</button>
+	    <button id="playlists-button" class="play">My Playlists</button>
+  </div>
+
+
+	<div class="content" style="margin-left: 200px">
+		<section class="content-section dashboard-section hidden">
+			<div class="other--stuff">
+			<div class="one">
+				<h1 style="margin-top: 20px; margin-bottom: 40px">Welcome back!</h1>
+				<div class="home--continue">
+					<h2 style="margin-top: 20px; margin-left: 10px; font-size: 16px">Continue learning</h2>
+					<div class="course--card" style="border: 1px solid #d4d4d4; margin-top: 20px">
+						<div class="course--banner">
+							<h1 id="course--name" style="margin-top: 10px; font-size: 24px">Learn Javascript</h1>
+						</div>
+						<div class="course--description">
+							<span>Event Handling</span>
+							<div class="course--lower">
+								<hr>
+								<span>0% of course completed</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="home--launch">
+
+					<div class="launch--img">
+						<img src="/compas.088a83db.png" width="100%" height="100%">
+					</div>
+					<div class="launch--desc">
+					
+						<h4>📢 COURSE LAUNCH 📢</h4>
+
+						<h2>🤖 Build AI Apps with ChatGPT, Dall-E and GPT-4</h2>
+						<p>Stay ahead of the web dev game by harnessing the power of AI. Build a movie pitch generator, a GPT-4 chatbot, and a fine-tuned bot trained on your own dataset.</p>
+						<hr>
+						<span style="margin-left: 250px">Join now</span>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="two" style="margin-left: 40px">
+				<div class="home--community">
+
+					<div class="community--svg">
+						<img src="/peeps-social.c2440431.svg" width="60%" height="60%" style="border-radius: 50px; margin-top: 30px; margin-left: 20px">
+					</div>
+					<div>
+						<div class="community--desc">
+							<h4>Savana community</h4>
+							<p>Meet fellow students and ask for help and reviews of your code. Programming is a team activity, so make the jump and share your code and knowledge with other</p>
+						</div>
+						
+						<div class="community--discord">
+							<hr>
+							<span>
+								<strong>164 online</strong>
+							</span> 
+							<span style="margin-left: 140px">Join us on discord</span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		</section>
+
+		<section class="content-section courses-section hidden">
+			<h2 style="margin-left: 40px">continue your progress</h2>
+
+
+			<div class="course--area">
+				<div class="course--card--course">
+					<div class="course--banner--js">
+						<h1 id="course--name">Learn Javascript</h1>
+					</div>
+					<div class="course--description">
+						<span>Event Handling</span>
+						<div class="course--lower">
+							<hr>
+							<span>0% of course completed</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="course--card--course">
+					<div class="course--banner--react">
+						<h1 id="course--name">Learn React</h1>
+					</div>
+					<div class="course--description">
+						<span>Event Handling</span>
+						<div class="course--lower">
+							<hr>
+							<span>0% of course completed</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="course--card--course">
+					<div class="course--banner--html">
+						<h1 id="course--name">Learn Html</h1>
+					</div>
+					<div class="course--description">
+						<span>Event Handling</span>
+						<div class="course--lower">
+							<hr>
+							<span>0% of course completed</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div style="margin-top: -80px; margin-left: 40px">
+				<h2>Other enrolled courses</h2>
+				<h2>Completed courses</h2>
+			</div>
+
+		</section>
+
+		<section class="content-section scrims-section hidden">
+			<h2>Screencasts</h2>
+			<button class="new-scrim" onclick="openModal()">+ New Screencast</button>
+			<div id="myModal" class="modal">
+		    <div class="modal-content">
+		      <span onclick="closeModal()" style="float: right; cursor: pointer">&times;</span>
+		      <h2 style="margin-bottom: 10px">Enter Name</h2>
+		      <input type="text" id="nameInput" style="width: 300px; height: 40px; margin-bottom: 10px">
+		      <br>
+		      <button onclick="saveName()" style="color: #fff; width: 80px; height: 40px; background-color: #5035ff; border: 1px solid #5035ff; border-radius: 4px">Save</button>
+		    </div>
+		  </div>
+
+			<div style="grid-column-gap: 2rem; grid-row-gap: 2rem; grid-template-columns: minmax(0, 1fr); margin-top: 1rem; display: grid" id="container">
+
+				<div class="lesson"><a href="#">Untitled Screencast</a></div>
+				<div class="lesson"><a href="#">Untitled Screencast</a></div>
+				<div class="lesson"><a href="#">first portfolio</a></div>
+			</div>
+		</section>
+
+		<section class="content-section playlists-section hidden">
+			<h2>Playlist</h2>
+			<button class="new-scrim" id="modalButton">+ New playlist</button>
+
+		  <div id="myModal1" class="modal1">
+		    <div class="modal1-content">
+		      <span class="close">&times;</span>
+		      <h2 style="margin-bottom: 10px">Enter Name and Upload File</h2>
+		      <form id="myForm">
+		        <label for="nameInput1" style="margin-bottom: 10px">Name:</label>
+		        <input type="text" id="nameInput1" style="margin-bottom: 10px">
+		        <br>
+		        <label for="fileInput" style="margin-bottom: 10px">File:</label>
+		        <input type="file" id="fileInput" style="margin-bottom: 10px">
+		        <br>
+		        <button type="submit">Submit</button>
+		      </form>
+		    </div>
+		  </div>
+
+
+			<div style="margin-top: 20px" id="container1">
+				<div class="playlist--item">test 01</div>
+			</div>
+		</section>
+
+	</div>
+
+	<div class="footer">
+		<div class="footer--left">
+			<h2 id="footer--savana" style="margin-left: 19px">Savana</h2>
+			<ul>
+			<li>Home</li>
+			<li>Plans & Pricing</li>
+			<li>Gift membership</li>
+			<li>Teacher talent program</li>
+			<ul>
+		</ul></ul></div>
+		<div class="footer--community">
+			<h3>Community</h3>
+			<ul>
+			<li>Explore the community</li>
+			<li>Podcast</li>
+			<li>YouTube</li>
+			<li>Get  emails</li>
+		</ul>
+		</div>
+		<div class="footer--courses">
+			<h3>Courses</h3>
+
+			<ul>
+			<li>All courses</li>
+			<li>Free courses</li>
+			<li>Pro courses</li>
+			<li>Self-paced Bootcamp</li>
+		</ul>
+		</div>
+		<div class="footer--company">
+			<h3>Company</h3>
+
+			<ul>
+			<li>About us</li>
+			<li>Support center</li>
+			<li>Terms</li>
+			<li>Privacy</li>
+		</ul>
+		</div>
+	</div>
+
+	<script>var modal = document.getElementById("myModal1");
+var button = document.getElementById("modalButton");
+var span = document.getElementsByClassName("close")[0];
+var form = document.getElementById("myForm");
+var persistedData = document.getElementById("container1");
+// Function to handle form submission
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent form from submitting
+    var name = document.getElementById("nameInput1").value;
+    // Create a new div element
+    var newDiv = document.createElement("div");
+    newDiv.classList.add("playlist--item");
+    // Create an anchor tag with the link
+    var anchorTag = document.createElement("a");
+    anchorTag.href = "./replay/replay.html";
+    anchorTag.textContent = name;
+    // Append the anchor tag to the new div
+    newDiv.appendChild(anchorTag);
+    // Append the new div to the persisted data container
+    persistedData.appendChild(newDiv);
+    // Close the modal
+    modal.style.display = "none";
+}
+// Add event listener for form submission
+form.addEventListener("submit", handleSubmit);
+// Retrieve and display existing persisted data on page load
+var persistedDivs = localStorage.getItem("persistedDivs");
+if (persistedDivs) persistedData.innerHTML = persistedDivs;
+button.onclick = function() {
+    modal.style.display = "block";
+};
+span.onclick = function() {
+    modal.style.display = "none";
+};
+window.onclick = function(event) {
+    if (event.target == modal) modal.style.display = "none";
+};
+// Save the persisted data on page unload
+window.addEventListener("beforeunload", function() {
+    localStorage.setItem("persistedDivs", persistedData.innerHTML);
+});
+
+</script>
+
+
+	<script>// Function to open the modal
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+// Function to close the modal
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+// Function to save the name and create an object
+function saveName() {
+    var name = document.getElementById("nameInput").value;
+    var recording = {};
+    // Create the object with the name and empty recording
+    var obj = {
+        name: name,
+        recording: recording
+    };
+    // Store the name in localStorage
+    localStorage.setItem("savedName", name);
+    localStorage.setItem("savedLink", "./editor/index.html");
+    // Create a new div element
+    var div = document.createElement("div");
+    div.classList.add("lesson");
+    // Create an anchor element with the link
+    var link = document.createElement("a");
+    link.href = "./editor/index.html";
+    link.textContent = name;
+    // Append the link to the div
+    div.appendChild(link);
+    var container = document.getElementById("container");
+    container.appendChild(div);
+    // Perform any additional actions with the object
+    console.log(obj);
+    // Close the modal
+    closeModal();
+}
+window.onload = function() {
+    var savedName = localStorage.getItem("savedName");
+    var savedLink = localStorage.getItem("savedLink");
+    if (savedName && savedLink) {
+        var div = document.createElement("div");
+        div.classList.add("lesson");
+        // Create an anchor element with the link
+        var link = document.createElement("a");
+        link.href = savedLink;
+        link.textContent = savedName;
+        // Append the link to the div
+        div.appendChild(link);
+        var container = document.getElementById("container");
+        container.appendChild(div);
+    }
+};
+
+</script>
+	
+<script src="/home.e6f346f6.js"></script></body>
+</html>
