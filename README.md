@@ -15,11 +15,13 @@ To build and run for productions, you can use
 npm run build
 
 ## How to record screencasts
-Go to the scrims page
-Create a new scrim
-Click on the scrim for editing
-You will be redirected to a new page
-On the page you will be present by a text editor and two (record and save) buttons.
-Click start recording and start typing code on the text editor.
-You can run your code using the run button and also toggle the console using the console button.
-After you've fininished, click stop recording and save the screencast.
+<ul>
+<li>Go to the scrims page</li>
+<li>Create a new scrim</li>
+<li>Click on the scrim for editing</li>
+<li>You will be redirected to a new page</li>
+<li>On the page you will be present by a text editor and two (record and save) buttons.</li>
+<li>Click start recording and start typing code on the text editor.</li>
+<li>You can run your code using the run button and also toggle the console using the console button.</li>
+<li>After you've fininished, click stop recording and save the screencast.</li>
+</ul>
