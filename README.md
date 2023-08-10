@@ -16,7 +16,7 @@ npm run build
 
 ## How to record screencasts
 <ul>
-<li>Go to the scrims page</li>
+1. Go to the scrims page
 <li>Create a new scrim</li>
 <li>Click on the scrim for editing</li>
 <li>You will be redirected to a new page</li>
