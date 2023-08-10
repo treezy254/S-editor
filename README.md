@@ -21,3 +21,4 @@ Click on the scrim for editing
 You will be redirected to a new page
 On the page you will be present by a text editor and two (record and save) buttons.
 Click start recording and start typing code on the text editor.
+You can run your code using the run button and also toggle the console using the console button.
