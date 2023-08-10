@@ -18,3 +18,4 @@ npm run build
 Go to the scrims page
 Create a new scrim
 Click on the scrim for editing
+You will be redirected to a new page
