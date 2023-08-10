@@ -19,8 +19,8 @@ npm run build
 <li>Go to the scrims page</li>
 <li>Create a new scrim</li>
 <li>Click on the scrim for editing</li>
-<li>You will be redirected to a new page</li>
-<li>On the page you will be present by a text editor and two (record and save) buttons.</li>
+<li>You will be redirected to a new page</li><br/>
+On the page you will be present by a text editor and two (record and save) buttons.<br/>
 <li>Click start recording and start typing code on the text editor.</li>
 <li>You can run your code using the run button and also toggle the console using the console button.</li>
 <li>After you've fininished, click stop recording and save the screencast.</li>
