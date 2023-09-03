@@ -1,4 +1,4 @@
-# S-editor
+# S-editor 
 An interactive code learning platform.
  
 If you want to run the platform locally, you can first clone the repository from
