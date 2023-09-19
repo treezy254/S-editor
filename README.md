@@ -8,7 +8,7 @@ git@github.com:treezy254/S-editor.git
  
 Then install the necessary dependencies with 
   
-npm i   s
+npm i  s
 npm start
  
 To build and run for productions, you can use
