@@ -8,7 +8,7 @@ git@github.com:treezy254/S-editor.git
  
 Then install the necessary dependencies with
 
-npm init
+npm init 
 
 npm start 
  
