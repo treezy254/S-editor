@@ -26,18 +26,18 @@ V = np.random.randn(2, n_particles) * 0.1
 
 # Initialize the data
 pbest = X
-pbest_obj = f(X[0], x[1])
+pbest_obj = f(X[0], X[1])
 gbest = pbest[:, pbest_obj.argmin()]
 gbest_obj = pbest_obj.min()
 
 def update():
 	""" Funtion to do one iteration of particle swarm optimization"""
-	global X, X, pbest, pbest_obj, gbest, gbest_obj
+	global X, V, pbest, pbest_obj, gbest, gbest_obj # Fix: Include V in the global statement
 	# Update params
 	r1, r2 = np.random.rand(2)
 	V = w * V + c1*r1*(pbest - X) + c2*r2*(gbest.reshape(-1,1)-X)
 	X = X + V
-	obj = f(x[0], X[1])
+	obj = f(X[0], X[1]) # Fix: Use X[0] instead of x[0]
 	pbest[:, (pbest_obj >= obj)] = X[:, (pbest_obj >= obj)]
 	pbest_obj = np.array([pbest_obj, obj]).min(axis=0)
 	gbest = pbest[:, pbest_obj.argmin()]
